@@ -38,7 +38,9 @@ defmodule TestGuardianDbError.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:guardian, "~> 0.14"},
-     {:guardian_db, "~> 0.7"},
+     {:guardian_db, "~> 0.7", override: true},
+     {:distillery, "~> 1.1"},
+     {:comeonin, "~> 2.5"},
      {:cowboy, "~> 1.0"}]
   end
 

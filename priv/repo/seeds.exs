@@ -9,3 +9,16 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias TestGuardianDbError.{Repo, User}
+require Logger
+
+test_user = %User{}
+|> User.changeset(%{email: "user@example.com", password: "password"})
+|> Repo.insert
+
+case test_user do
+  {:ok, user} -> {:ok, user}
+  {:error, %{errors: [email: {"has already been taken", _}] }} ->
+    Logger.info("Test User already exists")
+end
+

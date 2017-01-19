@@ -9,6 +9,12 @@ defmodule TestGuardianDbError.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_authenticated do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.EnsureAuthenticated, handler: TestGuardianDbError.SessionController
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -16,7 +22,14 @@ defmodule TestGuardianDbError.Router do
   scope "/", TestGuardianDbError do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/sessions", SessionController, :new # login to admin site
+    get "/", SessionController, :new
+    post "/sessions", SessionController, :create
+
+    scope "/protected/" do
+      pipe_through :browser_authenticated
+      get "/dashboard", DashboardController, :index
+    end
   end
 
   # Other scopes may use custom stacks.

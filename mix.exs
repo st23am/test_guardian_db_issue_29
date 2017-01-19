@@ -19,7 +19,7 @@ defmodule TestGuardianDbError.Mixfile do
   def application do
     [mod: {TestGuardianDbError, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :guardian, :guardian_db, :distillery]]
+                    :phoenix_ecto, :postgrex, :comeonin, :guardian]]
   end
 
   # Specifies which paths to compile per environment.

@@ -28,7 +28,9 @@ defmodule TestGuardianDbError.Router do
 
     scope "/protected/" do
       pipe_through :browser_authenticated
+
       get "/dashboard", DashboardController, :index
+      delete "/logout", SessionController, :destroy
     end
   end
 

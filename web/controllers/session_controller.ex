@@ -1,6 +1,6 @@
 defmodule TestGuardianDbError.SessionController do
   use TestGuardianDbError.Web, :controller
-  alias TestGuardianDbError.{User, Auth, LayoutView}
+  alias TestGuardianDbError.{User, Auth}
   alias Guardian.Plug.EnsureNotAuthenticated
   plug Guardian.Plug.VerifySession
   plug EnsureNotAuthenticated, [handler: __MODULE__] when action in [:new, :create]

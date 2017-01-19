@@ -1,3 +1,4 @@
 <div>
   <h1> YOU'RE Logged in!!</h1>
+  <%= button("Log out", to: session_path(@conn, :destroy), method: "delete") %>
 </div>
